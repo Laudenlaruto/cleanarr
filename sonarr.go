@@ -11,15 +11,7 @@ import (
 
 
 func sonarStatus(client *http.Client, url string, key string) {
-	req, err := http.NewRequest("GET", url+"system/status", nil)
-	if err != nil {
-		log.Fatalln(err)
-	}
-	req.Header.Add("X-Api-Key", key)
-	resp, err := client.Do(req)
-	if err != nil {
-		log.Fatalln(err)
-	}
+	resp := httpRequestSonarr(client,url,key,"system/status","GET")
 	var status model.SonarStatusResponse
 	if err := json.NewDecoder(resp.Body).Decode(&status); err != nil {
 		log.Fatal(err)
@@ -28,15 +20,7 @@ func sonarStatus(client *http.Client, url string, key string) {
 }
 
 func getSeries(client *http.Client, url string, key string){
-	req, err := http.NewRequest("GET", url+"series", nil)
-	if err != nil {
-		log.Fatalln(err)
-	}
-	req.Header.Add("X-Api-Key", key)
-	resp, err := client.Do(req)
-	if err != nil {
-		log.Fatalln(err)
-	}
+	resp := httpRequestSonarr(client,url,key,"series","GET")
 	var series model.Series
 	if err := json.NewDecoder(resp.Body).Decode(&series); err != nil {
 		log.Fatal(err)
