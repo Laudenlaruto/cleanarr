@@ -1,8 +1,8 @@
-package sonarr
+package model
 
 import "time"
 
-type sonarStatusResponse struct {
+type SonarStatusResponse struct {
 	Version           string    `json:"version"`
 	Buildtime         time.Time `json:"buildTime"`
 	Isdebug           bool      `json:"isDebug"`
@@ -26,7 +26,7 @@ type sonarStatusResponse struct {
 	Runtimename       string    `json:"runtimeName"`
 }
 
-type series []struct {
+type Series []struct {
 	Title string `json:"title"`
 	Alternatetitles []Alternatetitles `json:"alternateTitles"`
 	Sorttitle string `json:"sortTitle"`
@@ -34,7 +34,7 @@ type series []struct {
 	Totalepisodecount int `json:"totalEpisodeCount,omitempty"`
 	Episodecount int `json:"episodeCount,omitempty"`
 	Episodefilecount int `json:"episodeFileCount,omitempty"`
-	Sizeondisk int64 `json:"sizeOnDisk,omitempty"`
+	Sizeondisk int `json:"sizeOnDisk,omitempty"`
 	Status string `json:"status"`
 	Overview string `json:"overview"`
 	Previousairing time.Time `json:"previousAiring,omitempty"`

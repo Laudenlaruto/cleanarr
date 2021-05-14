@@ -1,11 +1,12 @@
 package main
 
 import (
+	"cleanarr/model"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"net/http"
+	"strconv"
 )
 
 
@@ -19,7 +20,7 @@ func sonarStatus(client *http.Client, url string, key string) {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	var status sonarr.sonarStatusResponse
+	var status model.SonarStatusResponse
 	if err := json.NewDecoder(resp.Body).Decode(&status); err != nil {
 		log.Fatal(err)
 	}
@@ -36,11 +37,15 @@ func getSeries(client *http.Client, url string, key string){
 	if err != nil {
 		log.Fatalln(err)
 	}
-	body, err := ioutil.ReadAll(resp.Body)
-    if err != nil {
-      log.Fatalln(err)
-    }
-//Convert the body to type string
-    sb := string(body)
-    fmt.Println(sb)
+	var series model.Series
+	if err := json.NewDecoder(resp.Body).Decode(&series); err != nil {
+		log.Fatal(err)
+	}
+	total := 0
+	for _,serie := range series {
+		GiB := convertBytestoGibiBytes(serie.Sizeondisk)
+		total = total + GiB
+	}
+
+	fmt.Printf("Total space consumed for Series: "+ strconv.Itoa(total) + "GiB\n")
 }
