@@ -31,7 +31,7 @@ func UsedSpace(client *http.Client, url string, key string){
 		total = total + serie.Sizeondisk
 	}
 	
-	GiB := utils.ConvertBytestoGibiBytes(total)
+	GiB := utils.ConvertBytestoGigaBytes(total)
 	fmt.Printf("Total space consumed for Series: "+ strconv.Itoa(GiB) + " GB\n")
 }
 // Sonarr HTTP request
