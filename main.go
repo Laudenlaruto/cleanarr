@@ -1,6 +1,7 @@
 package main
 
 import (
+	"cleanarr/sonarr"
 	"log"
 	"net/http"
 	"os"
@@ -22,7 +23,7 @@ func main() {
 						Usage: "Get status of Sonarr",
 						Action: func(c *cli.Context) error {
 							client := &http.Client{}
-							sonarStatus(client, url, key)
+							sonarr.Status(client, url, key)
 							return nil
 						},
 					},
@@ -31,7 +32,7 @@ func main() {
 						Usage: "space what is using space in Sonarr",
 						Action: func(c *cli.Context) error {
 							client := &http.Client{}
-							getSeries(client,url,key)
+							sonarr.UsedSpace(client,url,key)
 							return nil
 						},
 					},
