@@ -9,6 +9,7 @@ import (
 
 	"github.com/urfave/cli/v2"
 )
+
 func main() {
 	var url = "http://192.168.1.19:8989/api/"
 	var key = "e695509add214a7c8f7f20d829ea8d44"
@@ -33,7 +34,7 @@ func main() {
 						Usage: "space what is using space in Sonarr",
 						Action: func(c *cli.Context) error {
 							client := &http.Client{}
-							sonarr.UsedSpace(client,url,key)
+							sonarr.UsedSpace(client, url, key)
 							return nil
 						},
 					},
@@ -52,7 +53,7 @@ func main() {
 								log.Fatal("Parameter --days should be an number")
 							}
 							client := &http.Client{}
-							sonarr.ListEpisodeWithFilter(client,url,key,days)
+							sonarr.ListEpisodeWithFilter(client, url, key, days)
 							return nil
 						},
 					},

@@ -19,10 +19,10 @@ func ConvertBytestoGigaBytes(x int) int {
 
 func PrintOutJsonBody(resp *http.Response) {
 	body, err := ioutil.ReadAll(resp.Body)
-    if err != nil {
-      log.Fatalln(err)
-    }
-//Convert the body to type string
-    sb := string(body)
-    fmt.Println(sb)
+	if err != nil {
+		log.Fatalln(err)
+	}
+	//Convert the body to type string
+	sb := string(body)
+	fmt.Println(sb)
 }
