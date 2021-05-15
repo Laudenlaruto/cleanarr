@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strconv"
 
 	"github.com/urfave/cli/v2"
 )
@@ -33,6 +34,25 @@ func main() {
 						Action: func(c *cli.Context) error {
 							client := &http.Client{}
 							sonarr.UsedSpace(client,url,key)
+							return nil
+						},
+					},
+					{
+						Name:  "list",
+						Usage: "list all episodes that have beed added X days ago",
+						Flags: []cli.Flag{
+							&cli.StringFlag{
+								Name:  "days",
+								Usage: "How long age has the episode been added?",
+							},
+						},
+						Action: func(c *cli.Context) error {
+							days, err := strconv.Atoi(c.String("days"))
+							if err != nil {
+								log.Fatal("Parameter --days should be an number")
+							}
+							client := &http.Client{}
+							sonarr.ListEpisodeWithFilter(client,url,key,days)
 							return nil
 						},
 					},

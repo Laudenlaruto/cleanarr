@@ -96,3 +96,40 @@ type Ratings struct {
 	Votes int `json:"votes"`
 	Value float64 `json:"value"`
 }
+
+type EpisodeFile []struct {
+	Seriesid int `json:"seriesId"`
+	Seasonnumber int `json:"seasonNumber"`
+	Path string `json:"path"`
+	Size int64 `json:"size"`
+	Dateadded time.Time `json:"dateAdded"`
+	Scenename string `json:"sceneName"` //Kind of useless
+	Quality Quality `json:"quality"`
+	ID int `json:"id"`
+}
+type SubQuality struct {
+	ID int `json:"id"`
+	Name string `json:"name"`
+}
+type Quality struct {
+	Quality SubQuality `json:"quality"`
+	Proper bool `json:"proper"`
+}
+
+type Episode struct {
+	Seriesid int `json:"seriesId"`
+	Episodefileid int `json:"episodeFileId"`
+	Seasonnumber int `json:"seasonNumber"`
+	Episodenumber int `json:"episodeNumber"`
+	Title string `json:"title"`
+	Airdate string `json:"airDate"`
+	Airdateutc time.Time `json:"airDateUtc"`
+	Overview string `json:"overview"`
+	Hasfile bool `json:"hasFile"`
+	Monitored bool `json:"monitored"`
+	Sceneepisodenumber int `json:"sceneEpisodeNumber"`
+	Sceneseasonnumber int `json:"sceneSeasonNumber"`
+	Tvdbepisodeid int `json:"tvDbEpisodeId"`
+	Absoluteepisodenumber int `json:"absoluteEpisodeNumber"`
+	ID int `json:"id"`
+}
